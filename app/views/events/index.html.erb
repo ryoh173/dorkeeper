@@ -9,34 +9,43 @@
 
 <%= search_form_for @search  do |f| %>
   <div class="form-group">
-    <%= f.label :name_cont, "検索ワード" %>
-    <%= f.text_field :name_cont, class: "form-control" %>
+    <%= f.label :title_cont, "検索ワード" %>
+    <%= f.text_field :title_cont, class: "form-control" %>
   </div>
   <div class="actions"><%= f.submit "検索" %></div>
 <% end %>
 
 <% if @result.any? %>
-  <%= render @result %>
+  <div class="event">
+    <% @result.each do |event| %>
+    <div class= "row col-md-6">
+      <h4><strong><%= link_to event.title, event_path(event) %></strong></h4>
+        <h5><%= event.content %></h5><br>
+        <strong><p><%= "イベント開催者: "+ event.relationship_users.name %></p></strong><br>
+        <% if event.relationship_users.ids == current_user.id %>
+        <%= link_to '編集', edit_event_path(event), :class => 'btn btn-default btn-xs' %>
+        <%= link_to '削除', event_path(event),
+                    :method => :delete,
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか?')) },
+                    :class => 'btn btn-xs btn-danger' %>
+                    <% end %>
+    </div>
+    <% end %>
+  </div>
 <% end %>
+
+
 
 <% if @result.nil? %>
-  <ul class="users">
-    <%= render @users %>
-  </ul>
-<% end %>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_event_path,
-            :class => 'btn btn-primary' %>
 <div class="event">
-  <% @events.each do |event| %>
+  <% @events.each do |r| %>
   <div class= "row col-md-6">
-    <h4><strong><%= link_to event.title, event_path(event) %></strong></h4>
-      <h5><%= event.content %></h5><br>
-      <strong><p><%= "イベント開催者: "+ event.relationship_users.name %></p></strong><br>
-      <% if event.relationship_users.ids == current_user.id %>
-      <%= link_to '編集', edit_event_path(event), :class => 'btn btn-default btn-xs' %>
-      <%= link_to '削除', event_path(event),
+    <h4><strong><%= link_to r.title, r_path(r) %></strong></h4>
+      <h5><%= r.content %></h5><br>
+      <strong><p><%= "イベント開催者: "+ r.relationship_users.name %></p></strong><br>
+      <% if r.relationship_users.ids == current_user.id %>
+      <%= link_to '編集', edit_r_path(r), :class => 'btn btn-default btn-xs' %>
+      <%= link_to '削除', r_path(r),
                   :method => :delete,
                   :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか?')) },
                   :class => 'btn btn-xs btn-danger' %>
@@ -44,6 +53,11 @@
   </div>
   <% end %>
 </div>
+<% end %>
+
 </div>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_event_path,
+            :class => 'btn btn-primary' %>
 
 </div>

@@ -8,7 +8,7 @@ class RelationshipsController < ApplicationController
   end
 
   def destroy
-    relationship = current_user.relationships.find_by(event_id: params[:event_id]).destroy
+    relationship = current_user.relationships.find_by(event_id: params[:id]).destroy
     redirect_to events_url  #notice: "#{favorite.blog.user.name}さんのブログをお気に入り解除しました"
   end
 
