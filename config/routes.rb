@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
+
+  get 'relationships/create'
+
+  get 'relationships/destroy'
+
+  devise_for :users
   resources :events
+
+  resources :relationships, only: [:create, :destroy]
+
+  root "top#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

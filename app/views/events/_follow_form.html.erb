@@ -1,0 +1,18 @@
+<div id = "follow_form_<%= event.id %>">
+  <%# unless current_user.following?(event) %>
+    <%#= form_for(current_user.relationships.build(event_id: event.id)) do |f| %>
+      <%#= f.hidden_field :event_id %>
+      <%#= f.submit "参加", class: "btn btn-large btn-primary" %>
+    <%# end %>
+  <%# else %>
+    <%#= form_for(current_user.relationships.find_by(event_id: event.id), html: { method: :delete }, remote: true) do |f| %>
+      <%#= f.submit "つながりを解除", class: "btn btn-large" %>
+    <%# end %>
+  <%# end %>
+  <%# unless @event.relationships.user.id == current_user.id %>
+  <% if @relationship.present? %>
+    <%= link_to 'キャンセル', relationship_path(@event.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to '参加登録', relationships_path(event_id: @event.id), method: :post, class: 'btn btn-prymary' %>
+  <% end %>
+</div>
