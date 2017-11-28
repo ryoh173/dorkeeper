@@ -4,6 +4,8 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @search = Event.ransack(params[:q])  #追加
+    @result = @search.result
   end
 
   def show

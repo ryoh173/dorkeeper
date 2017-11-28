@@ -9,10 +9,11 @@
       <%#= f.submit "つながりを解除", class: "btn btn-large" %>
     <%# end %>
   <%# end %>
-  <%# unless @event.relationships.user.id == current_user.id %>
+  <% unless @event.relationship_user.user.id == current_user.id %>
   <% if @relationship.present? %>
-    <%= link_to 'キャンセル', relationship_path(@event.id), method: :delete, class: 'btn btn-danger' %>
+    <%= link_to 'キャンセル', relationships_path(@event.id), method: :delete, class: 'btn btn-danger' %>
   <% else %>
     <%= link_to '参加登録', relationships_path(event_id: @event.id), method: :post, class: 'btn btn-prymary' %>
+  <% end %>
   <% end %>
 </div>
