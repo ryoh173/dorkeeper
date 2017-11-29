@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :events
+  has_many :events, dependent: :destroy
   mount_uploader :image, ImagesUploader
 
   has_many :relationships, dependent: :destroy
