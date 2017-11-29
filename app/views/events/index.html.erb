@@ -21,7 +21,6 @@
     <div class= "row col-md-6">
       <h4><strong><%= link_to event.title, event_path(event) %></strong></h4>
         <h5><%= event.content %></h5><br>
-        <strong><p><%= "イベント開催者: "+ event.relationship_users.name %></p></strong><br>
         <% if event.relationship_users.ids == current_user.id %>
         <%= link_to '編集', edit_event_path(event), :class => 'btn btn-default btn-xs' %>
         <%= link_to '削除', event_path(event),
@@ -42,7 +41,6 @@
   <div class= "row col-md-6">
     <h4><strong><%= link_to r.title, r_path(r) %></strong></h4>
       <h5><%= r.content %></h5><br>
-      <strong><p><%= "イベント開催者: "+ r.relationship_users.name %></p></strong><br>
       <% if r.relationship_users.ids == current_user.id %>
       <%= link_to '編集', edit_r_path(r), :class => 'btn btn-default btn-xs' %>
       <%= link_to '削除', r_path(r),

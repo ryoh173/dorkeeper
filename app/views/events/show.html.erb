@@ -8,8 +8,8 @@
     <div class="event-detail">
       <h1><%= @event.title %></h1>
       <h3><%= @event.content %></h3>
-      <p><%#= image_tag @event.user.image.to_s %></p>
-      <p><%#= @event.relationships.user.name %></p><br>
+      <p　class="image"><%= image_tag @event.user.image.to_s %></p>
+      <p><%= @event.user.name %></p><br>
     </div>
 
     <%= render 'follow_form', event: @event %>
