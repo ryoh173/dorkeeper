@@ -431,3 +431,7 @@ template {
 img{
   max-width: 100%;
 }
+
+user_image {
+  margin-left: 30px;
+}

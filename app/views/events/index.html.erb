@@ -16,7 +16,7 @@
 <% end %>
 
 <% if @result.any? %>
-  <div class="event">
+  <div class="event-detail" >
     <% @result.each do |event| %>
     <div class= "row col-md-6">
       <h4><strong><%= link_to event.title, event_path(event) %></strong></h4>
