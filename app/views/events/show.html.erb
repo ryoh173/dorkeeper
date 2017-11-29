@@ -9,7 +9,11 @@
       <h3>タイトル：<%= @event.title %></h3>
       <h3>概要：<%= @event.content %></h3><br>
       <h4>開催者</h4>
+      <% if @event.user.image.to_s.include?("jpg") %>
       <p class="image"><%= image_tag @event.user.image.to_s, :size => "32x32" %></p>
+      <% elsif @event.user.image.to_s.include?("png") %>
+      <p class="image"><%= image_tag @event.user.image.to_s, :size => "32x32" %></p>
+      <% end %>
       <p><%= @event.user.name %></p><br>
     </div>
 
